@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tablas en contenedores</title>
+    <!-- Nuestro fichero JavaScript -->
+    <script src="dibujaTabla.js"></script>
+  </head>
+  <body>
+    <!-- Creo tres contenedores, uno para cada petición de tablas -->
+    <!-- Contenedor 1: tabla 10x4 negra -->
+    <div id="tabla1"></div>
+
+    <!-- Contenedor 2: tabla 20x10 negra -->
+    <div id="tabla2"></div>
+
+    <!-- Contenedor 3: diez tablas verdes 5x4 -->
+    <div id="tabla3"></div>
+
+    <!--La llamada al script al final del body-->
+    <script>
+      // Mi función tiene cuatro parámetros (filas,columnas,color,componenteHtml)
+      // Tabla 10x4 negra
+      creaTabla(10, 4, "black", "tabla1");
+
+      // Tabla 20x10 negra
+      creaTabla(20, 10, "black", "tabla2");
+
+      // 10 tablas verdes de 5x4 en el mismo contenedor
+      for (let i = 1; i <= 10; i++) {
+        creaTabla(5, 4, "green", "tabla3");
+      }
+    </script>
+  </body>
+</html>
