@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo de nodeType, nodeName y nodeValue</title>
+</head>
+<body>
+  <section id="info">
+    <h2>Propiedades de los nodos del DOM</h2>
+    <p>Este es un párrafo de ejemplo.</p>
+    <!-- Este es un comentario -->
+  </section>
+
+  <script>
+    // Seleccionamos el elemento <section> por su id
+    let seccion = document.getElementById("info");
+
+    // 1. nodeType -> indica el tipo de nodo
+    console.log("Tipo de nodo (nodeType):", seccion.nodeType);
+    // Devuelve 1, que corresponde a Node.ELEMENT_NODE
+
+    // 2. nodeName -> devuelve el nombre del nodo
+    console.log("Nombre del nodo (nodeName):", seccion.nodeName);
+    // Devuelve "SECTION" (siempre en mayúsculas)
+
+    // 3. nodeValue -> devuelve el valor del nodo (normalmente null en elementos)
+    console.log("Valor del nodo (nodeValue):", seccion.nodeValue);
+    // Devuelve null porque los elementos no tienen valor propio
+
+    // 4. Ejemplo con un nodo de texto
+    let parrafo = document.querySelector("p");       // selecciona el primer <p>
+    let texto = parrafo.firstChild;                  // el nodo de texto dentro del párrafo
+    console.log("Texto encontrado:", texto.nodeValue);
+    // Muestra el contenido textual: "Este es un párrafo de ejemplo."
+
+    // 5. Ejemplo con el nodo document
+    console.log("Tipo de document:", document.nodeType);  // 9 (DOCUMENT_NODE)
+    console.log("Nombre del document:", document.nodeName); // "#document"
+    console.log("Valor del document:", document.nodeValue); // null
+
+    // 6. Ejemplo con un comentario
+    let comentario = seccion.childNodes[3]; // el tercer hijo es el comentario
+    console.log("Tipo del comentario:", comentario.nodeType); // 8 (COMMENT_NODE)
+    console.log("Nombre del comentario:", comentario.nodeName); // "#comment"
+    console.log("Valor del comentario:", comentario.nodeValue); // " Este es un comentario "
+  </script>
+</body>
+</html>
