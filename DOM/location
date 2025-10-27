@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo de location.href</title>
+</head>
+<body>
+  <h2>Propiedad location.href</h2>
+  <p id="url"></p>
+  <button onclick="irAEducaMadrid()">Ir a EducaMadrid</button>
+
+  <script>
+    // Muestra la URL actual
+    document.getElementById("url").textContent = "URL actual: " + location.href;
+
+    // Cambia la ubicación al hacer clic
+    function irAEducaMadrid() {
+      location.href = "https://www.educa2.madrid.org";
+      // o simplemente: location = "https://www.educa2.madrid.org";
+    }
+
+    // También puedes ver la URL actual en la consola
+    console.log(location.href);
+  </script>
+</body>
+</html>
