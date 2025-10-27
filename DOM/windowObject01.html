@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejemplo de objeto window</title>
+  </head>
+  <body>
+    <h2>Propiedades y métodos importantes de window</h2>
+
+    <!-- Botones para ejecutar las funciones -->
+    <button onclick="mostrarInfo()">Mostrar información</button>
+    <button onclick="abrirVentana()">Abrir nueva ventana</button>
+    <button onclick="cerrarVentana()">Cerrar ventana</button>
+
+    <!-- Área para mostrar información del objeto window -->
+    <pre id="info"></pre>
+
+    <script>
+      // Variable global para guardar la referencia a la nueva ventana
+      let nuevaVentana;
+
+      // Muestra en pantalla varias propiedades del objeto window
+      function mostrarInfo() {
+        let texto = "";
+        // Tamaño interior visible del navegador (en píxeles)
+        texto += "Anchura interna: " + window.innerWidth + " px\n";
+        texto += "Altura interna: " + window.innerHeight + " px\n";
+        // Tamaño total de la ventana (incluye bordes y barras)
+        texto += "Anchura total: " + window.outerWidth + " px\n";
+        texto += "Altura total: " + window.outerHeight + " px\n";
+        // Información de la URL actual
+        texto += "URL actual: " + window.location.href + "\n";
+        texto += "Nombre del dominio: " + window.location.hostname + "\n";
+        texto += "Ruta: " + window.location.pathname + "\n";
+        texto += "Protocolo: " + window.location.protocol + "\n";
+        // Información del navegador y del idioma del usuario
+        texto += "Navegador detectado: " + window.navigator.userAgent + "\n";
+        texto += "Idioma: " + window.navigator.language + "\n";
+        // Muestra todo en el elemento <pre>
+        document.getElementById("info").textContent = texto;
+      }
+
+      // Abre una nueva ventana o pestaña con una URL específica
+      function abrirVentana() {
+        nuevaVentana = window.open(
+          "https://www.educa2.madrid.org",
+          "_blank",
+          "width=600,height=400"
+        );
+      }
+
+      // Cierra la ventana abierta si aún sigue activa
+      function cerrarVentana() {
+        if (nuevaVentana && !nuevaVentana.closed) {
+          nuevaVentana.close();
+        } else {
+          alert("No hay ventana abierta.");
+        }
+      }
+    </script>
+  </body>
+</html>
