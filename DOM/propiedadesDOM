@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>textContent vs innerHTML</title>
+  </head>
+  <body>
+    <h2>Ejemplo de propiedades textContent e innerHTML</h2>
+
+    <p id="parrafo">El <strong>Sol</strong> es una estrella.</p>
+
+    <button onclick="mostrarValores()">Mostrar valores</button>
+    <button onclick="cambiarContenido()">Cambiar contenido</button>
+
+    <script>
+      function mostrarValores() {
+        const p = document.getElementById("parrafo");
+
+        // textContent devuelve solo el texto (sin etiquetas)
+        console.log("textContent:", p.textContent);
+
+        // innerHTML devuelve el texto y las etiquetas HTML
+        console.log("innerHTML:", p.innerHTML);
+      }
+
+      function cambiarContenido() {
+        const p = document.getElementById("parrafo");
+
+        // textContent inserta texto literal (las etiquetas no se interpretan)
+        p.textContent = "Soy el <strong>Sol</strong> (texto sin formato)";
+
+        // innerHTML inserta texto con formato (las etiquetas se interpretan)
+        // p.innerHTML = "Soy el <strong>Sol</strong> (en negrita)";
+      }
+    </script>
+  </body>
+</html>
