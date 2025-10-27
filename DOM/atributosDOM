@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Manipulación de atributos en el DOM</title>
+</head>
+<body>
+  <a id="enlace" href="https://www.educa2.madrid.org" title="Portal educativo">EducaMadrid</a>
+  <br><br>
+  <button onclick="probarAtributos()">Probar atributos</button>
+
+  <script>
+    function probarAtributos() {
+      const enlace = document.getElementById("enlace");
+      console.clear();
+
+      // 1. Leer un atributo
+      console.log("href actual:", enlace.getAttribute("href"));
+
+      // 2. Cambiar o crear un atributo
+      enlace.setAttribute("title", "Enlace modificado");
+      console.log("Nuevo title:", enlace.getAttribute("title"));
+
+      // 3. Eliminar un atributo
+      enlace.removeAttribute("title");
+      console.log("¿Tiene 'title'?:", enlace.hasAttribute("title")); // false
+
+      // 4. Alternar atributo (añadir o quitar)
+      enlace.toggleAttribute("target"); // Si no existe, lo añade
+      console.log("¿Tiene 'target'?:", enlace.hasAttribute("target"));
+
+      // 5. Ver si el elemento tiene atributos
+      console.log("¿Tiene algún atributo?:", enlace.hasAttributes());
+
+      // 6. Listar todos los atributos actuales
+      console.log("Nombres de atributos:", enlace.getAttributeNames());
+      enlace.getAttributeNames().forEach(nombre => {
+        console.log(nombre, "=", enlace.getAttribute(nombre));
+      });
+
+      // Alternativa con .attributes
+      console.log("Listado con .attributes:");
+      for (let attr of enlace.attributes) {
+        console.log(attr.name, "=", attr.value);
+      }
+    }
+  </script>
+</body>
+</html>
