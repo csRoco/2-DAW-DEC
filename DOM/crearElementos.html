@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+  <body>
+    <h2>Ejemplo de creación dinámica de elementos</h2>
+    <div id="contenedor"></div>
+    <button onclick="agregarElemento()">Añadir elemento</button>
+
+    <script>
+      function agregarElemento() {
+        // 1. Crear el nuevo elemento <p>
+        const parrafo = document.createElement("p");
+
+        // 2. Crear el nodo de texto
+        const texto = document.createTextNode(
+          "Este párrafo fue creado con JavaScript.Pulsa F12 y observa..."
+        );
+
+        // 3. Insertar el texto dentro del párrafo
+        parrafo.appendChild(texto);
+
+        // 4. Añadir el párrafo al contenedor
+        const contenedor = document.getElementById("contenedor");
+        contenedor.appendChild(parrafo);
+      }
+    </script>
+  </body>
+</html>
