@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Propiedad style en JavaScript</title>
+  </head>
+  <body>
+    <h2 id="titulo">Modificando estilos con JavaScript</h2>
+    <button onclick="cambiarEstilo()">Cambiar estilo</button>
+
+    <script>
+      function cambiarEstilo() {
+        const t = document.getElementById("titulo");
+        t.style.color = "blue"; // color del texto
+        t.style.fontSize = "30px"; // tamaño de letra
+        t.style.backgroundColor = "yellow"; // color de fondo
+        t.style.border = "2px solid black"; // borde
+        t.style.padding = "10px"; // margen interno
+      }
+    </script>
+  </body>
+</html>
