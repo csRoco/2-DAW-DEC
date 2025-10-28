@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+  <body>
+    <section id="sistema">
+      <h2>Planetas</h2>
+      <ul>
+        <li>Mercurio</li>
+        <li>Venus</li>
+        <li>Tierra</li>
+        <li>Marte</li>
+      </ul>
+      <h2>Pulsa F12 y revisa los elemento sy la consola</h2>
+    </section>
+
+    <script>
+      const seccion = document.getElementById("sistema");
+      const lista = seccion.querySelector("ul");
+
+      console.log("Padre de la lista:", lista.parentNode.nodeName); // SECTION
+      console.log("Primer hijo:", lista.firstElementChild.textContent); // Mercurio
+      console.log("Último hijo:", lista.lastElementChild.textContent); // Marte
+
+      const segundo = lista.children[1];
+      console.log("Hermano siguiente:", segundo.nextElementSibling.textContent); // Tierra
+      console.log(
+        "Hermano anterior:",
+        segundo.previousElementSibling.textContent
+      ); // Mercurio
+    </script>
+  </body>
+</html>
