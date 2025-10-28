@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manipular clases CSS</title>
+    <style>
+      .resaltado {
+        color: red;
+        font-weight: bold;
+      }
+      .grande {
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="mensaje" class="grande">Texto de ejemplo</p>
+    <button onclick="añadir()">Añadir clase</button>
+    <button onclick="quitar()">Quitar clase</button>
+    <button onclick="alternar()">Alternar clase</button>
+    <button onclick="comprobar()">Comprobar clase</button>
+
+    <script>
+      const p = document.getElementById("mensaje");
+
+      function añadir() {
+        p.classList.add("resaltado");
+      }
+
+      function quitar() {
+        p.classList.remove("resaltado");
+      }
+
+      function alternar() {
+        p.classList.toggle("resaltado");
+      }
+
+      function comprobar() {
+        alert(
+          "¿Tiene la clase 'resaltado'? " + p.classList.contains("resaltado")
+        );
+      }
+    </script>
+  </body>
+</html>
