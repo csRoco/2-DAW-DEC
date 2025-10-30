@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Contador de visitas</title>
+  </head>
+  <body>
+    <script>
+      let hayCookies = false;
+
+      // 1. Verificar si el usuario ya aceptó el aviso de cookies en esta sesión
+      let exp = /(cookie=)(si|no)/;
+      let res = exp.exec(document.cookie);
+
+      if (res) {
+        if (res[2] === "si") {
+          hayCookies = true;
+        }
+      }
+
+      // 2. Mostrar el cuadro de diálogo si no ha aceptado
+      if (!hayCookies) {
+        hayCookies = confirm(
+          "Esta página usa una cookie para almacenar " +
+            "el número de visitas que hace cada usuario. " +
+            "Si está conforme con ello, pulse Sí\n" +
+            "De otro modo la página no realizará su labor " +
+            "y eliminará las cookies existentes"
+        );
+      }
+
+      if (hayCookies) {
+        // A. Grabar la cookie de aceptación
+        document.cookie = "cookie=si";
+
+        // B. Expresión Regular para sacar el número de visitas
+        exp = /(visitas=)(\d+)/;
+        res = exp.exec(document.cookie);
+
+        // C. Calcular las visitas: si 'res' existe, incrementa el valor encontrado; si no, es la primera visita (1).
+        let visitas;
+        if (res) {
+          // res[2] es un string, lo convertimos a número y lo incrementamos
+          visitas = parseInt(res[2]) + 1;
+        } else {
+          visitas = 1;
+        }
+
+        // D. Cálculo de la caducidad (hoy + 365 días)
+        let hoyMs = new Date().getTime();
+        let caducidad = new Date(hoyMs + 1000 * 60 * 60 * 24 * 365);
+
+        // E. Grabar la cookie de visitas. IMPORTANTE: Usar backticks (``) para Template Strings y 'toUTCString' sin espacios
+        document.cookie = `visitas=${visitas}; expires=${caducidad.toUTCString()}; path=/`;
+
+        // F. Mostrar visitas. IMPORTANTE: Usar backticks (``) para Template Strings
+        let p = document.createElement("p");
+        p.innerHTML = `Esta es tu visita número <strong>${visitas}</strong>`;
+        document.body.appendChild(p);
+      } else {
+        // Si no acepta, graba la cookie de no aceptación y expira la cookie de visitas
+        document.cookie = "cookie=no";
+        document.cookie =
+          "visitas=0;expires=Sat, 01 Jan 2000 00:00:01 GMT; path=/";
+      }
+    </script>
+  </body>
+</html>
