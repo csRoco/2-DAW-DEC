@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejemplo de Cookie Path</title>
+  </head>
+  <body>
+    <h1>Demostración de la Propiedad path en Cookies</h1>
+
+    <div id="resultado"></div>
+    <br />
+
+    <button onclick="crearCookieGlobal()">Crear Cookie Global (path=/)</button>
+    <button onclick="crearCookieLocal()">
+      Crear Cookie Local (path=/productos)
+    </button>
+
+    <script>
+      // Función auxiliar para mostrar todas las cookies en el cuerpo del documento
+      function mostrarCookies() {
+        document.getElementById("resultado").innerHTML =
+          "<h2>Cookies Visibles en esta Ruta:</h2>" +
+          "<ul><li>" +
+          document.cookie.split("; ").join("</li><li>") +
+          "</li></ul>";
+      }
+
+      // 1. Cookie Global (path=/)
+      function crearCookieGlobal() {
+        // Esta cookie se grabará con path=/
+        // Estará disponible en CUALQUIER página del sitio web.
+        document.cookie = "tema=claro; path=/";
+        alert("Cookie 'tema' creada con path=/ (Global)");
+        mostrarCookies();
+      }
+
+      // 2. Cookie Local (path=/productos)
+      function crearCookieLocal() {
+        // Esta cookie se grabará con path=/productos
+        // SOLO estará disponible para las páginas dentro de esa subcarpeta.
+        document.cookie = "carrito=item5; path=/productos";
+        alert("Cookie 'carrito' creada con path=/productos (Local)");
+        mostrarCookies();
+      }
+
+      // Inicializa la vista de cookies al cargar la página
+      mostrarCookies();
+    </script>
+  </body>
+</html>
