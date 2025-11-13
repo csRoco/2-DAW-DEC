@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Focus y Blur</title>
+  </head>
+  <body>
+    <button id="btn1">Botón 1</button>
+    <button id="btn2">Botón 2</button>
+
+    <script>
+      const btn1 = document.getElementById("btn1");
+      const btn2 = document.getElementById("btn2");
+
+      btn1.addEventListener("focus", () => {
+        console.log("Botón 1 recibe el foco (FOCUS)");
+      });
+
+      btn1.addEventListener("blur", () => {
+        console.log("Botón 1 pierde el foco (BLUR)");
+      });
+
+      btn2.addEventListener("focus", () => {
+        console.log("Botón 2 recibe el foco (FOCUS)");
+      });
+
+      btn2.addEventListener("blur", () => {
+        console.log("Botón 2 pierde el foco (BLUR)");
+      });
+    </script>
+  </body>
+</html>

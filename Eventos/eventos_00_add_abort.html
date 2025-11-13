@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AbortController y eventos</title>
+  </head>
+  <body>
+    <button id="btn1">Cambiar color</button>
+    <button id="btn2">Abortar evento</button>
+
+    <script>
+      const btn1 = document.getElementById("btn1");
+      const btn2 = document.getElementById("btn2");
+
+      const controller = new AbortController();
+
+      function random(number) {
+        return Math.floor(Math.random() * (number + 1));
+      }
+
+      // Listener con signal
+      btn1.addEventListener(
+        "click",
+        () => {
+          const rndCol = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+          document.body.style.backgroundColor = rndCol;
+          console.log("Botón 1: evento ejecutado");
+        },
+        { signal: controller.signal }
+      );
+
+      // Botón 2 aborta (elimina) el listener
+      btn2.addEventListener("click", () => {
+        controller.abort();
+        console.log("Evento del Botón 1 abortado");
+      });
+    </script>
+  </body>
+</html>

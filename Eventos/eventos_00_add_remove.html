@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Prueba removeEventListener</title>
+  </head>
+  <body>
+    <button id="btn1">Cambiar color</button>
+    <button id="btn2">Eliminar evento</button>
+
+    <script>
+      const btn1 = document.getElementById("btn1");
+      const btn2 = document.getElementById("btn2");
+
+      function random(number) {
+        return Math.floor(Math.random() * (number + 1));
+      }
+
+      function changeBackground() {
+        const rndCol = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+        document.body.style.backgroundColor = rndCol;
+        console.log("Botón 1: evento ejecutado");
+      }
+
+      // Añadir listener al botón 1
+      btn1.addEventListener("click", changeBackground);
+
+      // Botón 2 elimina el listener
+      btn2.addEventListener("click", () => {
+        btn1.removeEventListener("click", changeBackground);
+        console.log("Evento de Botón 1 eliminado");
+      });
+    </script>
+  </body>
+</html>
