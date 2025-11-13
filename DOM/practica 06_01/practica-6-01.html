@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+	<head>	
+		<meta charset="utf-8" />
+		<title>Práctica 6 -1 - DOM </title>
+		<link href="css/practica-06-01.css" rel="stylesheet" type="text/css" />
+		<script src="practica-6-01.js" type="text/javascript"> </script> 
+		<style>
+		</style>
+	</head>
+	<body onload="iniciar()">
+		<header>
+		</header>
+		<nav>
+		</nav>
+		<main>
+			<section>
+				<article>
+					<div>
+						<div id="grupo">
+							<div id="ini">
+								<dialog id="dialogo">
+										<label for="usuario">Usuario</label>
+										<input type="text" name="usuario" id="frmusuario" /> <br />
+										<label for="contra">Contraseña</label>
+										<input type="password" name="contra" id="frmcontra" /> <br />
+										<input type="button" value="Aceptar" id="btnaceptar" />
+										<input type="button" value="Cancelar" id="btncancelar" onclick="cerrar()" />
+								</dialog>
+								<label class="usar" for="usuario">Usuario:</label> 
+								<input class="usar" type="text" name="usuario" readonly id="usuario" maxlength="12" size="12"/> <br />
+								<input type="button" value="Registrarse" name="registro" id="registro" onclick="registrouser()" />
+								<input type="button" value="Entrar" name="entrar" id="entrar" onclick="entrarsesion()" />
+							</div>
+							<div id="defi">
+								<h2> Definiciones</h2>
+								<label for="palabra">Palabra</label>
+								<input type="text" name="palabra" id="palabra"/> <br />
+								<label for="concepto">Concepto</label>
+								<input type="text" name="concepto" id="concepto"/> <br />
+								<input type="button" value="A&ntilde;adir Definici&oacute;n" id="andefinicion" onclick="nuevadefinicion()" /> <br />
+								<h4>Lista de Definiciones</h4>
+								<dl id="defines">
+								</dl>
+							</div>
+							<div id="locali">
+								<h2>Nombres de Localidades</h2>
+								<label for="localida">Localidad</label>
+								<input type="text" name="localidad" id="localidad"/>	<br />
+								<input type="button" value="A&ntilde;adir Localidad" id="nuevaLoca" onclick="nuevaLocalidad()"/>
+								<h4>Lista de Localidades ordenadas</h4>
+								<ol id="locas">
+									
+								</ol>
+							</div>
+							<div id="autos">
+								<h2>Listado de Coches</h2>
+								<label for="marca">Marca</label>
+								<input type="text" name="marca" id="marca" /> <br />
+								<label for="modelo">Modelo</label>
+								<input type="text" name="modelo" id="modelo" /> <br />
+								<label for="precio">Precio</label>
+								<input type="text" name="precio" id="precio" /> <br />
+								<input type="button" value="A&ntilde;adir Coche" id="comprar" onclick="compraCoche()"/> <br />
+								<table id="coches">
+									<thead>
+									<tr>
+										<th>Marca</th>
+										<th>Modelo</th>
+										<th>Precio</th>
+									</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+							<div id="comuni">
+								<div id="d1">
+									<h2>Comunidades Aut&oacute;nomas</h2> <br/>
+									<select id="comunidades" onchange="ponerProvincias()">
+										<option value="asturias">Asturias</option>
+										<option value="aragon">Arag&oacute;n</option>
+										<option value="galicia">Galicia</option>
+										<option value="cantabria">Cantabria</option>
+										<option value="vasco">Pais Vasco</option>
+										<option value="navarra">Navarra</option>
+										<option value="catalunia">Cataluña</option>
+										<option value="castillaleon">Castilla-le&oacute;n</option>
+										<option value="madrid">Comunidad de Madrid</option>
+										<option value="rioja">La Rioja</option>
+										<option value="extremadura">Extremadura</option>
+										<option value="castillamancha">Castilla la Mancha</option>
+										<option value="valencia">Comunidad Valenciana</option>
+										<option value="baleares">Islas Baleares</option>
+										<option value="murcia">Murcia</option>
+										<option value="andalucia">Andalucia</option>
+										<option value="canarias">Islas Canarias</option>
+										<option value="ceuta">Ceuta</option>
+										<option value="melilla">Melilla</option>
+									<select>
+									Provincias 
+									<select id="provincias">
+									</select>
+								</div>
+								<div id="d3">
+									<h4>Comentario sobre la comunidad aut&oacute;noma</h4>
+									<span id="parrafo">
+										 
+									</span>
+								</div>
+							</div>
+							<div id="chat">
+								<dialog id="dialogo1">
+									<label for="tit">Título</label>
+									<input type="text" name="tit" id="tit" /> <br />
+									<label for="msg">Mensaje</label>
+									<input type="text" name="msg" id="msg" size="40"/> <br />
+									<fieldset>
+										<legend>Imagenes</legend>
+										<img src="imagenes/azul.png" />
+										<input type="radio" name="imagina" value="imagenes/azul.png" />
+										<img src="imagenes/estrella.png" />
+										<input type="radio" name="imagina" value="imagenes/estrella.png" />
+										<img src="imagenes/maestro.png" />
+										<input type="radio" name="imagina" value="imagenes/maestro.png" />
+										<img src="imagenes/estudio.png" />
+										<input type="radio" name="imagina" value="imagenes/estudio.png" />
+										<img src="imagenes/mago.png" />
+										<input type="radio" name="imagina" value="imagenes/mago.png" />
+										<img src="imagenes/pelos.png" />
+										<input type="radio" name="imagina" value="imagenes/pelos.png" />
+										<img src="imagenes/pilota.png" />
+										<input type="radio" name="imagina" value="imagenes/pilota.png" />
+									</fieldset>
+									<input type="button" name="acpmsg" id="acpmsg" value="Aceptar" onclick="crearmensa()" />
+									<input type="button" name="cerrarmsg" id="cerrarmsg" value="Cancelar" onclick="msgcerrar()" />
+								</dialog>
+								<h2>Mensajes</h2>
+								<div>
+									<div>
+										<img src="imagenes/maestro.png" />
+										<span class="usar">Félix</span>
+									</div>
+									<div>
+										Inicio Char
+									</div>
+									<div>
+										Bienvenidos al Chat
+									</div>
+								</div>
+								<div>
+									<div>
+										<img src="imagenes/estudio.png" />
+										<span class="usar">Ángel</span>
+									</div>
+									<div>
+										Cominezo Char
+									</div>
+									<div>
+										Chat interactivo de Interfaces en 2º DAW IES Leonardo da Vinci
+									</div>
+								</div>
+								<input type="button" value="Añadir mensaje" id="nuevomen" disabled onclick="mensajenuevo()" />
+							</div>
+						</div>
+						
+					</div>
+				</article>
+			</section>
+		</main>
+		<footer>
+		</footer>
+		<aside>
+		</aside>
+		
+	</body>
+</html>

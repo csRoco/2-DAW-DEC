@@ -1,0 +1,107 @@
+#grupo {
+	font-family:Calibri;
+	font-size:10pt;
+	background-color:blue;
+	color:white;
+	width:100%;
+	display:grid;
+	grid-template-columns:50%  50%;
+	grid-template-rows:100px 400px 400px 800px;
+	grid-auto-flow:row;
+	border:1px solid red;
+}
+#dialogo{
+	background-color:green;
+	width:20%;
+}
+#dialogo1{
+	background-color:red;
+	width:30%;
+}
+#dialogo1 > fieldset{
+	width:90%;
+}
+/*#grupo > div {
+	border:1px solid green;
+}*/
+label+input[type="text"]{
+	margin-left:2%;
+	margin-bottom:1%;
+}
+#ini{
+	margin-left:50%;
+	grid-column:2;
+	grid-row:1;
+}
+#ini > input[type="text"]{
+	width:40%;
+}
+#defi {
+	margin-left:5%;
+	grid-column:1;
+	grid-row:2;
+}
+#locali {
+	margin-left:5%;
+	grid-column:2;
+	grid-row:2;
+}
+#autos {
+	margin-left:5%;
+	grid-column:1;
+	grid-row:3;
+}
+#comuni {
+	margin-left:5%;
+	grid-column:2;
+	grid-row:3;
+}
+#chat{
+	margin-left:5%;
+	grid-column:1;
+	grid-row:4;
+}
+#chat > div{
+	margin-left:3%;
+	width:90%;
+	border:1px solid orange;
+	margin-bottom:1%;
+}
+#chat > div > div{
+	margin-left: 2%;
+}
+
+#chat > div > div:nth-of-type(2){
+	font-weight:bold;
+}
+#chat > div > div:nth-of-type(3){
+	font-style:italic;
+}
+
+#chat img{
+	width:2%;
+}
+.usar{
+	font-size:24pt;
+	color:yellow;
+	font-weight:bold;
+	font-family:Cambria;
+}
+input[type="text"].usar{
+	background-color:blue;
+	border:none;
+}
+#coches{
+	width:90%;
+	border:1px solid yellow;
+}
+#coches td, #coches th {
+	border:1px solid yellow;
+}
+#comunidades , #provincias{
+	width:40%;
+}
+
+#registracion{
+	display:none;
+}

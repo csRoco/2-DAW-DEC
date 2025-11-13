@@ -1,0 +1,73 @@
+body {
+	background-color:blue;
+	color:white;
+	line-height:2em;
+}
+#f1 {
+	position:absolute;
+	width:40%;
+	left:5%;
+	top:5%;
+	height:40%;
+}
+
+#f2 {
+	position:absolute;
+	width:40%;
+	left:55%;
+	top:5%;
+	height:40%;
+}
+#f3 {
+	position:absolute;
+	width:40%;
+	left:5%;
+	top:50%;
+	height:40%;
+}
+#f4 {
+	position:absolute;
+	width:40%;
+	left:55%;
+	top:50%;
+	height:100%;
+}
+input[type=text] {
+	position:absolute;
+	left:20%;
+}
+input[type=button] {
+	position:absolute;
+	left:30%;
+}
+table {
+	width:96%;
+}
+th , td {
+	width:30%;
+}
+table,td , th{
+	border:solid 1px green;
+}
+div {
+	position:absolute;
+	top:1%;
+	width:45%;
+}
+#d1 {
+	left:2%;
+}
+#d2 {
+	left:52%;
+}
+select {
+	width:90%;
+	position:absolute;
+	left:5%;
+}
+#d3 {
+	left:0%;
+	width:100%;
+	font-weight:bold;
+	top:12%;
+}
