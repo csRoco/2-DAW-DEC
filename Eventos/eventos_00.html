@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -36,3 +37,43 @@
     </script>
   </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cambiar color de fondo</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        padding-top: 100px;
+        transition: background-color 0.5s;
+      }
+      button {
+        font-size: 18px;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <button>Cambiar color</button>
+
+    <script>
+      const btn = document.querySelector("button");
+
+      function random(number) {
+        return Math.floor(Math.random() * (number + 1));
+      }
+
+      function changeBackground() {
+        const rndCol = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+        document.body.style.backgroundColor = rndCol;
+      }
+      btn.addEventListener("click", changeBackground);
+      btn.removeEventListener("click", changeBackground);
+    </script>
+  </body>
+</html>
+>>>>>>> 42f05fb23d24897dbed6e019c14481c3761016f1
