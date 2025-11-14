@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejemplo vídeo online</title>
+
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <button>Mostrar vídeo</button>
+
+    <div class="hidden">
+      <video>
+        <source
+          src="https://www.w3schools.com/html/mov_bbb.mp4"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+
+    <script>
+      const btn = document.querySelector("button");
+      const box = document.querySelector("div");
+      const video = document.querySelector("video");
+
+      btn.addEventListener("click", () => box.classList.remove("hidden"));
+      video.addEventListener("click", () => video.play());
+      box.addEventListener("click", () => box.classList.add("hidden"));
+    </script>
+  </body>
+</html>
