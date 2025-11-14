@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Validación de formulario</title>
+  </head>
+  <body>
+    <form>
+      <div>
+        <label for="fname">Nombre: </label>
+        <input id="fname" type="text" />
+      </div>
+
+      <div>
+        <label for="lname">Apellido: </label>
+        <input id="lname" type="text" />
+      </div>
+
+      <div>
+        <input id="submit" type="submit" value="Enviar" />
+      </div>
+    </form>
+
+    <p></p>
+
+    <script>
+      const form = document.querySelector("form");
+      const fname = document.getElementById("fname");
+      const lname = document.getElementById("lname");
+      const para = document.querySelector("p");
+
+      form.addEventListener("submit", (e) => {
+        if (fname.value === "" || lname.value === "") {
+          e.preventDefault();
+          para.textContent = "¡Necesitas completar ambos campos!";
+        }
+      });
+    </script>
+  </body>
+</html>

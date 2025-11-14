@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -45,3 +46,52 @@
     </script>
   </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Propagación de eventos</title>
+    <style>
+      div {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 50%;
+        width: 100%;
+        background-color: gray;
+      }
+      p {
+        height: 50%;
+        margin: 0;
+        background-color: lightgray;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>
+        <button>¡Hazme clic!</button>
+      </p>
+    </div>
+
+    <script>
+      let capa = document.querySelector("div");
+      let p = document.querySelector("p");
+      let boton = document.querySelector("button");
+
+      capa.addEventListener("click", () => {
+        console.log("click en capa");
+      });
+
+      p.addEventListener("click", () => {
+        console.log("click en p");
+      });
+
+      boton.addEventListener("click", () => {
+        console.log("click en botón");
+      });
+    </script>
+  </body>
+</html>
+>>>>>>> 88e9a3a0674d42d3f06f62541fb0e0c3319fb300

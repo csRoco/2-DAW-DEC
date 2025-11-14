@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -76,3 +77,83 @@
     </script>
   </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Eventos en JavaScript</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      #capa {
+        background-color: lightgray;
+        padding: 20px;
+        margin-bottom: 10px;
+      }
+      button {
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="capa">
+      <p>Zona de prueba</p>
+      <button id="boton1">Clic normal</button>
+      <button id="boton2">Desactivar eventos</button>
+      <button id="crear">Crear botón dinámico</button>
+    </div>
+
+    <script>
+      // --- Captura y burbuja ---
+      const capa = document.getElementById("capa");
+      const boton1 = document.getElementById("boton1");
+      const boton2 = document.getElementById("boton2");
+      const crear = document.getElementById("crear");
+
+      function mensajeCapa() {
+        console.log("click en capa");
+      }
+      capa.addEventListener("click", mensajeCapa, false); // burbuja
+
+      function mensajeBoton() {
+        console.log("click en botón 1");
+      }
+      boton1.addEventListener("click", mensajeBoton);
+
+      // --- Anular acción por defecto ---
+      const enlace = document.createElement("a");
+      enlace.href = "https://example.com";
+      enlace.textContent = "Enlace bloqueado";
+      enlace.addEventListener("click", (event) => {
+        event.preventDefault();
+        console.log("Acción anulada con preventDefault()");
+      });
+      document.body.appendChild(enlace);
+
+      // --- Eliminar listener ---
+      boton2.addEventListener("click", () => {
+        boton1.removeEventListener("click", mensajeBoton);
+        console.log("Evento en botón 1 eliminado");
+      });
+
+      // --- Elementos dinámicos con delegación ---
+      crear.addEventListener("click", () => {
+        const nuevo = document.createElement("button");
+        nuevo.textContent = "Botón dinámico";
+        nuevo.classList.add("dinamico");
+        capa.appendChild(nuevo);
+      });
+
+      // Delegación: detecta clics en botones dinámicos
+      capa.addEventListener("click", (event) => {
+        if (event.target.matches(".dinamico")) {
+          console.log("Click en botón dinámico");
+          event.stopPropagation(); // evita que llegue al div
+        }
+      });
+    </script>
+  </body>
+</html>
+>>>>>>> 88e9a3a0674d42d3f06f62541fb0e0c3319fb300
