@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Generador de números primos</title>
+
+    <style>
+      /* Estilo para el área de texto */
+      textarea {
+        display: block;
+        margin: 1rem 0;
+      }
+
+      /* Estilos generales del cuerpo */
+      body {
+        font-family: Arial, sans-serif;
+        padding: 1rem;
+      }
+
+      /* Las etiquetas se muestran en negrita */
+      label {
+        font-weight: bold;
+      }
+
+      /* Cuadro donde se muestra el mensaje final */
+      #output {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #f0f0f0;
+        border-radius: 5px;
+        font-size: 1.1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Generador de números primos</h1>
+
+    <!-- Entrada para que el usuario indique cuántos primos generar -->
+    <label for="quota">Cantidad de números primos:</label>
+    <input type="text" id="quota" name="quota" value="1000000" />
+
+    <!-- Botones de acción -->
+    <button id="generate">Generar números primos</button>
+    <button id="reload">Recargar</button>
+
+    <!-- Área de texto para comprobar que la página se congela
+         durante la ejecución síncrona -->
+    <textarea id="user-input" rows="5" cols="62">
+  Prueba a escribir algo aquí inmediatamente después de presionar el botón "Generar números primos"
+</textarea
+    >
+
+    <!-- Contenedor donde se mostrará el resultado -->
+    <div id="output"></div>
+
+    <script>
+      const MAX_PRIME = 1000000;
+
+      function isPrime(n) {
+        for (let i = 2; i <= Math.sqrt(n); i++) {
+          if (n % i === 0) {
+            return false;
+          }
+        }
+        return n > 1;
+      }
+
+      const random = (max) => Math.floor(Math.random() * max);
+
+      // Versión ASÍNCRONA: genera primos por "trozos" para no bloquear la UI
+      function generatePrimesAsync(quota, onProgress) {
+        return new Promise((resolve) => {
+          const primes = [];
+
+          function generarBloque() {
+            const start = performance.now();
+
+            // Trabaja como máximo ~50 ms seguidos
+            while (primes.length < quota && performance.now() - start < 50) {
+              const candidate = random(MAX_PRIME);
+              if (isPrime(candidate)) {
+                primes.push(candidate);
+              }
+            }
+
+            if (onProgress) {
+              onProgress(primes.length);
+            }
+
+            if (primes.length >= quota) {
+              // Hemos terminado
+              resolve(primes);
+            } else {
+              // Dejamos respirar al event loop y continuamos en el siguiente "tick"
+              setTimeout(generarBloque, 0);
+            }
+          }
+
+          generarBloque();
+        });
+      }
+
+      const quota = document.querySelector("#quota");
+      const output = document.querySelector("#output");
+      const generateBtn = document.querySelector("#generate");
+      const reloadBtn = document.querySelector("#reload");
+
+      generateBtn.addEventListener("click", async () => {
+        const cantidad = Number(quota.value);
+        if (!Number.isFinite(cantidad) || cantidad <= 0) {
+          output.textContent =
+            "Introduce una cantidad válida de números primos.";
+          return;
+        }
+
+        generateBtn.disabled = true;
+        output.textContent = "Calculando números primos...";
+
+        const primes = await generatePrimesAsync(cantidad, (actual) => {
+          output.textContent = `Calculando... ${actual} / ${cantidad}`;
+        });
+
+        output.textContent = `¡Finalizado! se han generado ${primes.length} números primos.`;
+        generateBtn.disabled = false;
+      });
+
+      reloadBtn.addEventListener("click", () => {
+        document.location.reload();
+      });
+    </script>
+  </body>
+</html>

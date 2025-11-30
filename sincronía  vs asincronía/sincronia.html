@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Generador de números primos</title>
+
+    <style>
+      /* Estilo para el área de texto */
+      textarea {
+        display: block;
+        margin: 1rem 0;
+      }
+
+      /* Estilos generales del cuerpo */
+      body {
+        font-family: Arial, sans-serif;
+        padding: 1rem;
+      }
+
+      /* Las etiquetas se muestran en negrita */
+      label {
+        font-weight: bold;
+      }
+
+      /* Cuadro donde se muestra el mensaje final */
+      #output {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #f0f0f0;
+        border-radius: 5px;
+        font-size: 1.1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Generador de números primos</h1>
+
+    <!-- Entrada para que el usuario indique cuántos primos generar -->
+    <label for="quota">Cantidad de números primos:</label>
+    <input type="text" id="quota" name="quota" value="1000000" />
+
+    <!-- Botones de acción -->
+    <button id="generate">Generar números primos</button>
+    <button id="reload">Recargar</button>
+
+    <!-- Área de texto para comprobar que la página se congela
+         durante la ejecución síncrona -->
+    <textarea id="user-input" rows="5" cols="62">
+  Prueba a escribir algo aquí inmediatamente después de presionar el botón "Generar números primos"
+</textarea
+    >
+
+    <!-- Contenedor donde se mostrará el resultado -->
+    <div id="output"></div>
+
+    <script>
+      /* Valor máximo para elegir números aleatorios */
+      const MAX_PRIME = 1000000;
+
+      /* Función que comprueba si un número es primo
+         mediante división hasta su raíz cuadrada */
+      function isPrime(n) {
+        for (let i = 2; i <= Math.sqrt(n); i++) {
+          if (n % i === 0) {
+            return false; // si es divisible, no es primo
+          }
+        }
+        return n > 1; // números menores o iguales a 1 no son primos
+      }
+
+      /* Función que devuelve un número entero aleatorio */
+      const random = (max) => Math.floor(Math.random() * max);
+
+      /* Genera la cantidad indicada de números primos */
+      function generatePrimes(quota) {
+        const primes = []; // lista de primos generados
+        while (primes.length < quota) {
+          const candidate = random(MAX_PRIME); // número aleatorio
+          if (isPrime(candidate)) {
+            primes.push(candidate); // si es primo, lo añadimos
+          }
+        }
+        return primes; // devolvemos el array completo
+      }
+
+      /* Capturamos los elementos del DOM */
+      const quota = document.querySelector("#quota");
+      const output = document.querySelector("#output");
+
+      /* Evento para generar los números primos */
+      document.querySelector("#generate").addEventListener("click", () => {
+        // Aquí se ejecuta la función SÍNCRONA que congela la página
+        const primes = generatePrimes(quota.value);
+
+        // Mensaje final una vez termina el cálculo
+        output.textContent = `¡Finalizado! se han generado ${quota.value} números primos`;
+      });
+
+      /* Evento para recargar la página */
+      document.querySelector("#reload").addEventListener("click", () => {
+        document.location.reload();
+      });
+    </script>
+  </body>
+</html>
