@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Funciones en JavaScript</title>
+  </head>
+
+  <body>
+    <h1>Funciones de JavaScript</h1>
+    <h2>setTimeout() con una función callback</h2>
+
+    <p>Espera 3 segundos (3000 milisegundos) para que esta página cambie.</p>
+
+    <h1 id="demo"></h1>
+
+    <script>
+      setTimeout(function () {
+        myFunction("¡Yo te quiero mucho!");
+      }, 3000);
+
+      myFunction("Yo te quiero, ¿tú me quieres a mí?");
+
+      function myFunction(value) {
+        document.getElementById("demo").textContent = value;
+      }
+    </script>
+  </body>
+</html>
