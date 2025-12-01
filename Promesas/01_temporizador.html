@@ -2,66 +2,30 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Prueba de Promesa Rápida</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #f4f4f4;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Iniciando temporizador...</h1>
-
+    <title>Temporizador</title>
     <script>
-      // --- 1. FUNCIÓN TEMPORIZADOR (La Promesa) ---
       function temporizador(tiempo) {
-        return new Promise((resolver, rechazar) => {
-          let temp, temp2;
-
-          // Temporizador de ÉXITO (Se resuelve en 'tiempo')
-          temp = setTimeout(() => {
+        var promesa = new Promise((resolver, rechazar) => {
+          var temp = setTimeout(() => {
             clearTimeout(temp2);
-            resolver("Tiempo concluido (Éxito)");
+            resolver("Tiempo concluido");
           }, tiempo);
-
-          // Temporizador de FALLO (Se rechaza en 'tiempo * 2')
-          temp2 = setTimeout(() => {
-            clearTimeout(temp);
-            rechazar("Error: El proceso tardó demasiado (Timeout)");
+          var temp2 = setTimeout(() => {
+            rechazar("El tiempo no va bien");
           }, tiempo * 2);
         });
+        return promesa;
       }
-
-      // --- 2. CONFIGURACIÓN DE LA PRUEBA ---
-
-      // Tiempo base de espera: 2000 ms = 2 segundos
-      const TIEMPO_ESPERA = 2000;
-
-      // Muestra el estado inicial.
-      document.body.innerHTML = `<h1>Esperando ${
-        TIEMPO_ESPERA / 1000
-      } segundos...</h1>`;
-
-      temporizador(TIEMPO_ESPERA)
+    </script>
+  </head>
+  <body>
+    <script>
+      temporizador(5000)
         .then((texto) => {
-          // Se ejecuta a los 2 segundos
-          document.body.innerHTML =
-            "<h2 style='color: white; background-color: green; padding: 20px;'>✅ ÉXITO: " +
-            texto +
-            "</h2>";
+          document.body.innerHTML = "<p>" + texto + "</p>";
         })
-        .catch((mensaje) => {
-          // Solo se ejecutaría si el tiempo fuera > 4 segundos
-          document.body.innerHTML =
-            "<h2 style='color: white; background-color: red; padding: 20px;'>❌ FALLO: " +
-            mensaje +
-            "</h2>";
+        .catch((m) => {
+          document.body.textContent = m;
         });
     </script>
   </body>
