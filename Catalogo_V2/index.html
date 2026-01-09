@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Inventario Steel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Catálogo de productos</h1>
+    <input type="button" value="Añadir Nuevo Producto" id="btn_toggle_form">
+</header>
+
+<!-- ========================= -->
+<!-- FORMULARIO -->
+<!-- ========================= -->
+<div id="formulario_producto" class="steel-panel">
+    <h2>Registro de Material</h2>
+
+    <div class="campo-grupo">
+        <label>ID de Producto</label>
+        <input type="number" id="id" placeholder="000">
+        <span class="error-text" id="error-id"></span>
+    </div>
+
+    <div class="campo-grupo">
+        <label>Nombre</label>
+        <input type="text" id="nombre" placeholder="Nombre del artículo">
+        <span class="error-text" id="error-nombre"></span>
+    </div>
+
+    <div class="campo-grupo">
+        <label>Descripción</label>
+        <input type="text" id="descripcion">
+    </div>
+
+    <div class="campo-grupo">
+        <label>Precio (€)</label>
+        <input type="text" id="precio" placeholder="0.00">
+        <span class="error-text" id="error-precio"></span>
+    </div>
+
+    <div class="campo-grupo">
+        <label>URL de imagen</label>
+        <input
+            type="url"
+            id="ruta_imagen"
+            placeholder="https://ejemplo.com/imagen.jpg">
+        <span class="error-text" id="error-imagen"></span>
+    </div>
+
+
+    <button id="btn_confirmar" onclick="intentarAgregar()">
+        Agregar Producto
+    </button>
+
+    <div id="status_peticion"></div>
+</div>
+
+<!-- ========================= -->
+<!-- CATÁLOGO -->
+<!-- ========================= -->
+<section id="catalogo">
+    <h2>Inventario (<span id="contador_productos">0</span>)</h2>
+    <div id="grid_productos"></div>
+</section>
+
+<!-- ========================= -->
+<!-- PANEL DETALLE -->
+<!-- ========================= -->
+<div id="panel_detalle" class="steel-panel">
+    <h3>Detalles del Producto</h3>
+    <div id="info_contenido">
+        Seleccione un producto para ver detalles.
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

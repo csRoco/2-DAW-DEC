@@ -1,0 +1,65 @@
+:root {
+    --steel-light: #bdc3c7;
+    --steel-dark: #2c3e50;
+    --accent: #adff2f;
+}
+
+body {
+    background-color: #1a1a1d;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.steel-panel {
+    background: linear-gradient(145deg, #7f8c8d, #34495e);
+    border: 2px solid #2c3e50;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: inset 1px 1px 0px #bdc3c7, 4px 4px 10px rgba(0,0,0,0.5);
+    margin: 20px 0;
+    width: 100%;
+    max-width: 500px;
+}
+
+#formulario_producto { display: none; }
+
+.campo-grupo { margin-bottom: 12px; }
+.campo-grupo label { display: block; font-size: 0.75rem; font-weight: bold; margin-bottom: 4px; }
+.campo-grupo input, select { width: 100%; padding: 8px; border: 1px solid #2c3e50; border-radius: 2px; }
+
+.error-active { border: 2px solid #e74c3c !important; }
+.error-text { color: #72e73c; font-size: 1.0rem; }
+
+/* Grid de Productos */
+#grid_productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.producto-card {
+    position: relative;
+    cursor: pointer;
+    border: 2px solid var(--steel-light);
+    overflow: hidden;
+}
+
+.producto-card img { width: 100%; display: block; transition: transform 0.3s; }
+
+/* Nombre visible solo al pasar el ratón */
+.producto-card .nombre-overlay {
+    position: absolute;
+    bottom: 0; background: rgba(0,0,0,0.7);
+    width: 100%; text-align: center;
+    opacity: 0; transition: opacity 0.3s;
+    font-size: 0.8rem; padding: 5px 0;
+}
+
+.producto-card:hover .nombre-overlay { opacity: 1; }
+.producto-card:hover img { transform: scale(1.1); }
