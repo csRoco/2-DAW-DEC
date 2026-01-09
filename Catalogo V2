@@ -1,0 +1,54 @@
+Características
+    1. Validación de formulario
+        ◦ Cada campo se valida en tiempo real mientras el usuario escribe.
+        ◦ Los errores se muestran junto a cada campo (rojo + mensaje).
+        ◦ El botón "Guardar" solo se habilita si todos los campos son válidos.
+        ◦ Campos validados:
+            ▪ ID: obligatorio y único.
+            ▪ Nombre: obligatorio.
+            ▪ Precio: número válido y no negativo.
+            ▪ Imagen: URL válida y accesible.
+    2. Simulación de servidor
+        ◦ La acción de guardar un producto se simula con setTimeout.
+        ◦ Se utiliza una función simularServidor que devuelve aleatoriamente éxito o fallo:
+            ▪ 80% de probabilidad de éxito.
+            ▪ 20% de probabilidad de fallo.
+        ◦ Permite probar la lógica de envío y manejo de errores sin un backend real.
+    3. Visualización de productos
+        ◦ Los productos guardados se muestran como tarjetas en un grid.
+        ◦ Cada tarjeta muestra la imagen y el nombre del producto.
+        ◦ Al hacer clic en una tarjeta, se muestra un panel de detalle con ID, precio, descripción e imagen.
+    4. Gestión de estado del formulario
+        ◦ Los errores se muestran desde que se abre el formulario o después de limpiar.
+        ◦ Después de guardar un producto, el formulario se limpia y el botón se deshabilita automáticamente hasta que se llenen todos los campos.
+        ◦ La validación inicial se ejecuta cada vez que se abre el formulario, garantizando consistencia para múltiples productos.
+    5. Compatibilidad con múltiples productos
+        ◦ No depende del primer producto; los campos vacíos se marcan correctamente incluso después de agregar varios productos.
+
+Estructura del script
+    1. Estado inicial
+        ◦ Array productos para almacenar los productos agregados.
+    2. Validadores
+        ◦ Funciones para comprobar campos vacíos, duplicados, precios inválidos y validez de la URL de la imagen.
+    3. DOM
+        ◦ Referencias a inputs, botones y contenedores de productos y detalles.
+    4. Configuración de validación
+        ◦ Definición de reglas por campo y mensajes de error.
+    5. Funciones de validación
+        ◦ validarFormulario: valida todos los campos antes de guardar.
+        ◦ formularioValidoSoloCheck: valida campos solo para habilitar/deshabilitar el botón.
+        ◦ marcarError y limpiarError: muestran u ocultan errores visualmente.
+    6. Validación en tiempo real
+        ◦ Se ejecuta en cada input de los campos, marcando errores y actualizando el estado del botón.
+    7. Mostrar formulario y validar al abrir
+        ◦ La función validarCamposConErrores marca los errores iniciales.
+        ◦ Se llama cada vez que se abre el formulario o se limpia.
+    8. Simulación de servidor
+        ◦ simularServidor devuelve una promesa que resuelve o rechaza aleatoriamente después de un segundo.
+    9. Agregar producto
+        ◦ intentarAgregar valida, llama a la simulación del servidor, actualiza el estado y agrega el producto al grid.
+        ◦ agregarProducto y crearTarjeta gestionan la visualización de los productos.
+    10. Panel de detalle
+        ◦ Muestra la información completa del producto seleccionado al hacer clic en su tarjeta.
+    11. Limpieza de formulario
+        ◦ limpiarFormulario vacía los campos y vuelve a ejecutar la validación inicial para mantener consistencia.
