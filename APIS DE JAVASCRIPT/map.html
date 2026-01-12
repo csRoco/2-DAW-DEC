@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Geolocalización con Leaflet</title>
+    <!-- Incluir Leaflet CSS según quick-start -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <style>
+      #map {
+        height: 400px;
+        width: 100%;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="status">Haz clic en el botón para localizarte</p>
+    <button id="find-me">Encontrar mi ubicación</button>
+    <div id="map"></div>
+
+    <!-- Incluir Leaflet JS según quick-start -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <script>
+      const status = document.querySelector("#status");
+      const button = document.querySelector("#find-me");
+
+      // Crear mapa vacío centrado globalmente
+      const map = L.map("map").setView([0, 0], 2);
+
+      // Añadir capa de OpenStreetMap
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+
+      button.addEventListener("click", () => {
+        if (!navigator.geolocation) {
+          status.textContent = "Geolocalización no soportada por el navegador";
+          return;
+        }
+
+        status.textContent = "Localizando…";
+
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const lat = pos.coords.latitude;
+            const lon = pos.coords.longitude;
+
+            status.textContent = `Ubicación encontrada: Lat ${lat}, Lon ${lon}`;
+
+            // Centrar mapa en la ubicación del usuario con zoom 15
+            map.setView([lat, lon], 15);
+
+            // Añadir un marcador con popup
+            L.marker([lat, lon])
+              .addTo(map)
+              .bindPopup("¡Aquí estás!")
+              .openPopup();
+
+            // Añadir un círculo alrededor de la ubicación
+            L.circle([lat, lon], {
+              color: "blue",
+              fillColor: "#30f",
+              fillOpacity: 0.2,
+              radius: 200,
+            }).addTo(map);
+          },
+          (err) => {
+            status.textContent = `Error al obtener la ubicación: ${err.message}`;
+          }
+        );
+      });
+    </script>
+  </body>
+</html>
